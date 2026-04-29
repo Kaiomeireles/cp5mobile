@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   itemSelected: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#FF3B30',
   },
   text: {
     fontSize: 14,

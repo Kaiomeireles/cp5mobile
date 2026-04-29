@@ -65,7 +65,7 @@ export const HomeScreen: React.FC = () => {
         <View style={styles.statsRow}>
           <TouchableOpacity 
             style={[styles.statItem, { backgroundColor: isDark ? '#2C2C2E' : '#FFF' }]}
-            onPress={() => (navigation as any).navigate('Tarefas')}
+            onPress={() => (navigation as any).navigate('Tasks')}
           >
             <Feather name="list" size={24} color="#FF3B30" />
             <Text style={[styles.statValue, { color: isDark ? '#FFF' : '#1A1A1A' }]}>Ver Tarefas</Text>

@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   prioritySelected: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#FF3B30',
   },
   priorityText: {
     fontSize: 14,

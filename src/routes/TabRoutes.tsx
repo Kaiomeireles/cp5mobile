@@ -23,7 +23,7 @@ export const TabRoutes: React.FC = () => {
           backgroundColor: isDark ? '#1C1C1E' : '#FFF',
           borderTopColor: isDark ? '#38383A' : '#EEE',
         },
-        tabBarActiveTintColor: '#007AFF',
+        tabBarActiveTintColor: '#FF3B30',
         tabBarInactiveTintColor: '#8E8E93',
       }}
     >
