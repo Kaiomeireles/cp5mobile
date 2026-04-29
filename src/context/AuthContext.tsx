@@ -1,73 +1,61 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { User } from '../types/user';
 
-type User = {
-  name: string;
-  role: string;
-};
-
-export type AuthContextData = {
+interface AuthContextData {
+  signed: boolean;
   user: User | null;
   loading: boolean;
-  login: (username: string, password: string) => Promise<boolean>;
-  logout: () => Promise<void>;
-};
+  signIn(username: string, password: string): Promise<void>;
+  signOut(): void;
+  error: string | null;
+}
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+const users = [
+  { id: 1, username: 'admin', password: '123', role: 'admin', name: 'Administrador' },
+  { id: 2, username: 'user', password: '123', role: 'user', name: 'Usuário Comum' },
+];
+
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const json = await AsyncStorage.getItem('@taskflow:user');
-        if (json) {
-          setUser(JSON.parse(json));
-        }
-      } catch (e) {
-        // ignore
-      } finally {
-        setLoading(false);
+    async function loadStorageData() {
+      const storageUser = await AsyncStorage.getItem('@taskflow_user');
+      if (storageUser) {
+        setUser(JSON.parse(storageUser));
       }
-    })();
+      setLoading(false);
+    }
+    loadStorageData();
   }, []);
 
-  async function login(username: string, password: string) {
-    // simple fake authentication - replace with real API call
-    let newUser: User | null = null;
-
-    if (username === 'admin' && password === 'admin') {
-      newUser = { name: 'Admin', role: 'admin' };
-    } else if (username === 'user' && password === 'user') {
-      newUser = { name: 'Usuário', role: 'user' };
+  async function signIn(username: string, password: string) {
+    setError(null);
+    const foundUser = users.find(u => u.username === username && u.password === password);
+    
+    if (foundUser) {
+      const { password: _, ...userData } = foundUser;
+      setUser(userData as User);
+      await AsyncStorage.setItem('@taskflow_user', JSON.stringify(userData));
+    } else {
+      setError('Credenciais inválidas');
+      throw new Error('Invalid credentials');
     }
-
-    if (!newUser) return false;
-
-    setUser(newUser);
-    try {
-      await AsyncStorage.setItem('@taskflow:user', JSON.stringify(newUser));
-    } catch (e) {
-      // ignore
-    }
-
-    return true;
   }
 
-  async function logout() {
+  function signOut() {
+    AsyncStorage.removeItem('@taskflow_user');
     setUser(null);
-    try {
-      await AsyncStorage.removeItem('@taskflow:user');
-    } catch (e) {
-      // ignore
-    }
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ signed: !!user, user, loading, signIn, signOut, error }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
