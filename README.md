@@ -18,7 +18,7 @@ Este projeto faz parte da entrega **CP5** do curso de Mobile Development na FIAP
 
 ## 📱 Demonstração em Vídeo
 
-[Assista ao vídeo de demonstração aqui]([LINK_DO_VIDEO_AQUI](https://youtu.be/D_i8Yg93XkU))
+[Assista ao vídeo de demonstração aqui]([[LINK_DO_VIDEO_AQUI](https://youtu.be/D_i8Yg93XkU)](https://youtu.be/D_i8Yg93XkU))
 *(O vídeo cobre: navegação, fluxo de CRUD, persistência de dados e consumo de API)*
 
 ---
