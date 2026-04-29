@@ -1,8 +1,18 @@
-# TaskFlow 🚀
+# Nexus 💎
+**By QuadraDevs**
 
-**TaskFlow** é um aplicativo mobile de gerenciamento de tarefas pessoais desenvolvido com **React Native** e **TypeScript**. O projeto foca em oferecer uma experiência fluida, com organização modular, persistência de dados local e uma interface moderna que se adapta às preferências do usuário (Dark/Light mode).
+**Nexus** é um aplicativo mobile de gerenciamento de tarefas pessoais desenvolvido por 4 amigos estudantes e apaixonados por **League of Legends**. O projeto transforma a organização diária em uma jornada pelo Rift, com terminologias do jogo e uma interface inspirada na estética Hextech/LoL.
 
-Este projeto faz parte da entrega **CP5** do curso de Mobile Development.
+Este projeto faz parte da entrega **CP5** do curso de Mobile Development na FIAP.
+
+---
+
+## 🎮 Skin do Projeto: "Nexus Pro"
+- **App Name:** Nexus
+- **Dev Team:** QuadraDevs (The student quad)
+- **Terminology:** 
+  - Status: *Pendente* (Em Lane), *Em Andamento* (Farming), *Concluída* (VITÓRIA!).
+  - Prioridades (Elo): *Baixa* (Ferro), *Média* (Platina), *Alta* (Challenger).
 
 ---
 
@@ -15,47 +25,18 @@ Este projeto faz parte da entrega **CP5** do curso de Mobile Development.
 
 ## ✨ Funcionalidades
 
-- **Autenticação:** Sistema de login simples com diferentes níveis de acesso (Admin/User).
-- **Gerenciamento de Tarefas (CRUD):** 
-  - Cadastro de novas tarefas com prioridade e categoria.
-  - Listagem com filtros por status (Pendente/Concluída).
-  - Edição e remoção de tarefas com confirmação.
-- **Persistência Local:** Todos os dados (tarefas, login e temas) são salvos no dispositivo usando `AsyncStorage`.
-- **Temas Dinâmicos:** Suporte completo a modo claro e escuro.
-- **Consumo de API:** Busca de frases motivacionais aleatórias via API externa para a tela Home.
-- **Navegação Profissional:** Combinação de `Bottom Tabs` e `Stack Navigation`.
+- **Autenticação de Invocador:** Login simples com redirecionamento baseado em função (Admin/Player).
+- **Farm de Tarefas (CRUD):** 
+  - Cadastro de tarefas com elo (prioridade) e categoria.
+  - Listagem com filtros por status de partida.
+  - Edição e remoção com confirmação de "Surrender".
+- **Memória do Rift:** Persistência local total com `AsyncStorage`.
+- **Modo Rift:** Suporte completo a tema Dark (inspirado no LoL) e Light.
+- **Frase do Dia:** Consumo de API para exibir frases de incentivo para carregar a partida.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
-
-- **React Native** (Expo)
-- **TypeScript** (Tipagem forte)
-- **React Navigation** (Tabs & Stack)
-- **Context API** (Estado Global para Auth, Tasks e Theme)
-- **AsyncStorage** (Armazenamento local)
-- **Axios / Fetch** (Consumo de API)
-- **StyleSheet** (Design System customizado)
-
----
-
-## 📂 Estrutura do Projeto
-
-```text
-src/
- ├── components/    # Componentes reutilizáveis (Botões, Inputs, Cards)
- ├── context/       # Estados globais (Auth, Task, Theme)
- ├── hooks/         # Hooks customizados (useAuth, useTasks, useTheme)
- ├── routes/        # Configurações de navegação
- ├── screens/       # Telas da aplicação (Home, Tasks, Settings, Login)
- ├── services/      # Integração com API e Storage
- ├── types/         # Definições de tipos TypeScript
- └── utils/         # Funções auxiliares (Formatação, IDs)
-```
-
----
-
-## 👥 Integrantes do Grupo
+## 👥 Integrantes (QuadraDevs)
 
 - **Kaio Vinicius Meireles Alves** - RM553282
 - **Lucas Alves de Souza** - RM553956
@@ -64,36 +45,22 @@ src/
 
 ---
 
-## 🚀 Como executar o projeto
+## 🚀 Build & Run
 
-1. **Clone o repositório:**
+1. **Clone o Rift:**
    ```bash
    git clone https://github.com/Kaiomeireles/cp5mobile
    ```
 
-2. **Instale as dependências:**
+2. **Instale os Itens (Dependências):**
    ```bash
    npm install
    ```
 
-3. **Inicie o projeto:**
+3. **Inicie a Partida:**
    ```bash
    npx expo start
    ```
 
-4. **Abra no seu dispositivo:**
-   Use o app **Expo Go** (Android/iOS) para ler o QR Code gerado no terminal.
-
 ---
-
-## 📝 Regras de Negócio Implementadas
-
-- [x] Título obrigatório nas tarefas.
-- [x] Não permite salvar campos vazios.
-- [x] IDs únicos gerados automaticamente.
-- [x] Datas de criação e atualização automáticas.
-- [x] Confirmação antes de excluir tarefas.
-- [x] Redirecionamento inteligente pós-login (Admin -> Configurações | User -> Home).
-
----
-Desenvolvido com ❤️ pelo grupo de CP5.
+Desenvolvido com ❤️ pela **QuadraDevs**. GL HF! 🏆

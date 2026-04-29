@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Platform } from 'react-native';
 import { useAuth } from '../hooks/useAuth';
 import { useTheme } from '../hooks/useTheme';
+import { Feather } from '@expo/vector-icons';
 
 export const Header: React.FC = () => {
   const { user, signOut } = useAuth();
@@ -12,12 +13,23 @@ export const Header: React.FC = () => {
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: isDark ? '#1C1C1E' : '#FFF' }]}>
       <View style={styles.container}>
-        <View>
-          <Text style={[styles.welcome, { color: isDark ? '#FFF' : '#333' }]}>Olá, {user?.name}</Text>
-          <Text style={styles.role}>{user?.role === 'admin' ? 'Administrador' : 'Usuário'}</Text>
+        <View style={styles.userSection}>
+          <View style={[styles.avatar, { backgroundColor: isDark ? '#3A3A3C' : '#F2F2F7' }]}>
+            <Text style={[styles.avatarText, { color: isDark ? '#FFF' : '#5856D6' }]}>
+              {user?.name.charAt(0).toUpperCase()}
+            </Text>
+          </View>
+          <View style={styles.info}>
+            <Text style={[styles.welcome, { color: isDark ? '#FFF' : '#1A1A1A' }]}>Olá, {user?.name}</Text>
+            <View style={[styles.badge, { backgroundColor: user?.role === 'admin' ? '#5856D620' : '#34C75920' }]}>
+              <Text style={[styles.role, { color: user?.role === 'admin' ? '#5856D6' : '#34C759' }]}>
+                {user?.role === 'admin' ? 'Administrador' : 'Usuário'}
+              </Text>
+            </View>
+          </View>
         </View>
         <TouchableOpacity onPress={signOut} style={styles.logoutButton}>
-          <Text style={styles.logoutText}>Sair</Text>
+          <Feather name="log-out" size={20} color="#FF3B30" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -26,32 +38,67 @@ export const Header: React.FC = () => {
 
 const styles = StyleSheet.create({
   safe: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#EEE',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+    zIndex: 10,
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingVertical: 12,
   },
-  welcome: {
+  userSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  avatarText: {
     fontSize: 18,
     fontWeight: 'bold',
   },
+  info: {
+    justifyContent: 'center',
+  },
+  welcome: {
+    fontSize: 16,
+    fontWeight: '700',
+    marginBottom: 2,
+  },
+  badge: {
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 6,
+    alignSelf: 'flex-start',
+  },
   role: {
-    fontSize: 12,
-    color: '#8E8E93',
+    fontSize: 10,
+    fontWeight: '800',
     textTransform: 'uppercase',
   },
   logoutButton: {
-    padding: 8,
-    backgroundColor: '#FF3B3015',
-    borderRadius: 6,
-  },
-  logoutText: {
-    color: '#FF3B30',
-    fontWeight: '600',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#FF3B3010',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

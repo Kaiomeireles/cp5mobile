@@ -36,7 +36,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   async function signIn(username: string, password: string) {
     setError(null);
-    const foundUser = users.find(u => u.username === username && u.password === password);
+    const sanitizedUsername = username.trim().toLowerCase();
+    const sanitizedPassword = password.trim();
+    const foundUser = users.find(u => u.username === sanitizedUsername && u.password === sanitizedPassword);
     
     if (foundUser) {
       const { password: _, ...userData } = foundUser;

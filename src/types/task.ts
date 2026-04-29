@@ -1,5 +1,5 @@
 export type TaskStatus = 'pendente' | 'em_andamento' | 'concluida';
-export type TaskPriority = 'baixa' | 'media' | 'alta';
+export type TaskPriority = 'baixa' | 'media' | 'alta'; // Mapeado internamente para Ferro, Platina, Challenger
 
 export interface Task {
   id: string;

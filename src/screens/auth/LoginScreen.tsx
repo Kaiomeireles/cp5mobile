@@ -32,37 +32,47 @@ export const LoginScreen: React.FC = () => {
       style={styles.container}
     >
       <View style={styles.content}>
-        <Text style={styles.logo}>TaskFlow</Text>
-        <Text style={styles.subtitle}>Gerencie suas tarefas com facilidade</Text>
+        <View style={styles.header}>
+          <Text style={styles.logoText}>Nexus</Text>
+          <Text style={styles.brandSubtitle}>by QuadraDevs</Text>
+        </View>
         
-        <CustomInput 
-          label="Usuário"
-          placeholder="Digite seu usuário"
-          value={username}
-          onChangeText={setUsername}
-          autoCapitalize="none"
-        />
-        
-        <CustomInput 
-          label="Senha"
-          placeholder="Digite sua senha"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
+        <View style={styles.formContainer}>
+          <Text style={styles.welcomeText}>Bem-vindo</Text>
+          <Text style={styles.instructionText}>Acesse sua conta para continuar</Text>
 
-        {error && <Text style={styles.errorText}>{error}</Text>}
+          <CustomInput 
+            label="Usuário"
+            placeholder="Digite seu usuário"
+            value={username}
+            onChangeText={setUsername}
+            autoCapitalize="none"
+          />
+          
+          <CustomInput 
+            label="Senha"
+            placeholder="Sua senha"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
 
-        <CustomButton 
-          title="Entrar"
-          onPress={handleLogin}
-          loading={loading}
-          style={styles.button}
-        />
+          {error && (
+            <View style={styles.errorBox}>
+              <Text style={styles.errorText}>{error}</Text>
+            </View>
+          )}
+
+          <CustomButton 
+            title="Entrar"
+            onPress={handleLogin}
+            loading={loading}
+            style={styles.button}
+          />
+        </View>
         
         <View style={styles.footer}>
-          <Text style={styles.footerText}>admin / 123</Text>
-          <Text style={styles.footerText}>user / 123</Text>
+          <Text style={styles.footerText}>Swift & Red Interface</Text>
         </View>
       </View>
     </KeyboardAvoidingView>
@@ -72,39 +82,74 @@ export const LoginScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FFFFFF',
   },
   content: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 30,
   },
-  logo: {
+  header: {
+    alignItems: 'center',
+    marginBottom: 50,
+  },
+  logoText: {
     fontSize: 42,
     fontWeight: '900',
-    color: '#007AFF',
-    textAlign: 'center',
+    color: '#FF3B30', // Nexus Red
+    letterSpacing: -1,
   },
-  subtitle: {
+  brandSubtitle: {
+    fontSize: 12,
+    color: '#8E8E93',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 2,
+    marginTop: 4,
+  },
+  formContainer: {
+    width: '100%',
+  },
+  welcomeText: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    marginBottom: 6,
+  },
+  instructionText: {
     fontSize: 16,
     color: '#8E8E93',
-    textAlign: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
+  },
+  errorBox: {
+    backgroundColor: '#FF3B3010',
+    padding: 12,
+    borderRadius: 12,
+    marginVertical: 10,
   },
   errorText: {
     color: '#FF3B30',
     textAlign: 'center',
-    marginVertical: 10,
+    fontSize: 14,
+    fontWeight: '600',
   },
   button: {
-    marginTop: 20,
+    marginTop: 15,
+    height: 56,
+    borderRadius: 16,
   },
   footer: {
-    marginTop: 40,
+    position: 'absolute',
+    bottom: 50,
+    left: 0,
+    right: 0,
     alignItems: 'center',
   },
   footerText: {
-    color: '#AEAEB2',
+    color: '#D1D1D6',
     fontSize: 12,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   }
 });
