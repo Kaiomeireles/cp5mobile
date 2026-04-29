@@ -1,22 +1,18 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View, Text } from 'react-native';
+import { TaskStackParamList } from '../types/navigation';
+import { TaskListScreen } from '../screens/tasks/TaskListScreen';
+import { TaskFormScreen } from '../screens/tasks/TaskFormScreen';
+import { TaskDetailScreen } from '../screens/tasks/TaskDetailScreen';
 
-// Exemplo de tela de tarefas
-function TasksScreen() {
+const Stack = createNativeStackNavigator<TaskStackParamList>();
+
+export const TaskStackRoutes: React.FC = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Tela de Tarefas</Text>
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
-
-export default function TaskStackRoutes() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="TasksMain" component={TasksScreen} options={{ title: 'Tarefas' }} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="TaskList" component={TaskListScreen} />
+      <Stack.Screen name="TaskForm" component={TaskFormScreen} options={{ headerShown: true, title: 'Nova Tarefa' }} />
+      <Stack.Screen name="TaskDetail" component={TaskDetailScreen} options={{ headerShown: true, title: 'Detalhes' }} />
     </Stack.Navigator>
   );
-}
+};
